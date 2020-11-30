@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace employee_management_system.Contracts
 {
-    interface ILeaveRequestRepository : IRepositoryBase<LeaveRequest>
+    public interface ILeaveRequestRepository : IRepositoryBase<LeaveRequest>
     {
     }
 }

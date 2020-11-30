@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace employee_management_system.Contracts
 {
-    interface IRepositoryBase<T> where T : class
+    public interface IRepositoryBase<T> where T : class
     {
         ICollection<T> FindAll();
         T FindById(int id);
