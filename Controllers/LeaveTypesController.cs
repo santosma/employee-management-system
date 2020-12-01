@@ -44,15 +44,28 @@ namespace employee_management_system.Controllers
         // POST: LeaveTypesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(LeaveTypeViewModel model)
         {
             try
             {
+                if(!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                var modelMapping = _mappings.Map<LeaveType>(model);
+                //give datetime after model mapping
+                modelMapping.DateCreated = DateTime.Now;
+                if(!_repos.Create(modelMapping))
+                {
+                    ModelState.AddModelError("", "Error adding data from form");
+                    return View(model);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Error");
+                return View(model);
             }
         }
 
