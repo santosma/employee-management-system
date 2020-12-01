@@ -12,14 +12,12 @@ namespace employee_management_system.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<LeaveType, LeaveTypeCreateViewModel>().ReverseMap();
-            CreateMap<LeaveType, LeaveTypeDetailsViewModel>().ReverseMap();
+            CreateMap<LeaveType, LeaveTypeViewModel>().ReverseMap();
 
             CreateMap<LeaveAllocation, LeaveAllocationCreateViewModel>().ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationDetailsViewModel>().ReverseMap();
 
-            CreateMap<LeaveRequest, LeaveRequestCreateViewModel>().ReverseMap();
-            CreateMap<LeaveRequest, LeaveRequestDetailsViewModel>().ReverseMap();
+            CreateMap<LeaveRequest, LeaveRequestViewModel>().ReverseMap();
 
             CreateMap<Employee, EmployeeViewModel>().ReverseMap();
 

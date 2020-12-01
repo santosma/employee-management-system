@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using employee_management_system.Contracts;
+using employee_management_system.Data;
+using employee_management_system.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,7 +24,9 @@ namespace employee_management_system.Controllers
         // GET: LeaveTypesController
         public ActionResult Index()
         {
-            return View();
+            var leavetypes = _repos.FindAll();
+            var model = _mappings.Map<ICollection<LeaveType>, ICollection<LeaveTypeViewModel>>(leavetypes);
+            return View(model);
         }
 
         // GET: LeaveTypesController/Details/5

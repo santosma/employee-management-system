@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace employee_management_system.Models
 {
-    public class LeaveRequestCreateViewModel
+    public class LeaveRequestViewModel
     {
         public int Id { get; set; }
         
@@ -20,7 +20,7 @@ namespace employee_management_system.Models
         public DateTime EndLeave { get; set; }
 
 
-        public LeaveTypeDetailsViewModel LeaveType { get; set; }
+        public LeaveTypeViewModel LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
         public IEnumerable<SelectListItem> LeaveTypes { get; set; }
 
