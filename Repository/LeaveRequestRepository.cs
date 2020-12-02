@@ -29,6 +29,11 @@ namespace employee_management_system.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.LeaveHistories.Any(q => q.Id == id);
+        }
+
         public ICollection<LeaveRequest> FindAll()
         {
             return _db.LeaveHistories.ToList();

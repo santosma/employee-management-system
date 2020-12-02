@@ -28,6 +28,12 @@ namespace employee_management_system.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.LeaveTypes.Any(q => q.Id == id);
+
+        }
+
         public ICollection<LeaveType> FindAll()
         {
             return _db.LeaveTypes.ToList();

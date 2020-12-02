@@ -28,6 +28,11 @@ namespace employee_management_system.Repository
             return Save();
         }
 
+        public bool Exists(int id)
+        {
+            return _db.LeaveAllocations.Any(q => q.Id == id);
+        }
+
         public ICollection<LeaveAllocation> FindAll()
         {
             return _db.LeaveAllocations.ToList();
