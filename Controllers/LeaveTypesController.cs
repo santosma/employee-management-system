@@ -70,23 +70,43 @@ namespace employee_management_system.Controllers
         }
 
         // GET: LeaveTypesController/Edit/5
+        //send desired id to edit
         public ActionResult Edit(int id)
         {
-            return View();
+            //if no records found 
+            if(!_repos.Exists(id))
+            {
+                //404 error
+                return NotFound();
+            }
+            //map model to the record
+            var modelMapping = _mappings.Map<LeaveTypeViewModel>(_repos.FindById(id));
+            return View(modelMapping);
         }
 
         // POST: LeaveTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(LeaveTypeViewModel model)
         {
             try
             {
+                if(!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                var modelMapping = _mappings.Map<LeaveType>(model);
+                if(!_repos.Update(modelMapping))
+                {
+                    ModelState.AddModelError("", "Error updating record");
+                    return View(model);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                ModelState.AddModelError("", "Unknown Error while updating record");
+                return View(model);
             }
         }
 
