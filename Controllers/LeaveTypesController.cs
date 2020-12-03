@@ -32,13 +32,15 @@ namespace employee_management_system.Controllers
         // GET: LeaveTypesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
-        }
-
-        // GET: LeaveTypesController/Create
-        public ActionResult Create()
-        {
-            return View();
+            //does the id even exist?
+            if(!_repos.Exists(id))
+            {
+                //if not return 404 error
+                return NotFound();
+            }
+            //map the model by id with LeaveType
+            var modelMapping = _mappings.Map<LeaveTypeViewModel>(_repos.FindById(id));
+            return View(modelMapping);
         }
 
         // POST: LeaveTypesController/Create
