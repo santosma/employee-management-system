@@ -43,6 +43,7 @@ namespace employee_management_system.Controllers
             return View(modelMapping);
         }
 
+
         // POST: LeaveTypesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -86,6 +87,7 @@ namespace employee_management_system.Controllers
             return View(modelMapping);
         }
 
+        // TODO: Change implementation to [HttpPut(..)]
         // POST: LeaveTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -114,14 +116,24 @@ namespace employee_management_system.Controllers
 
         // GET: LeaveTypesController/Delete/5
         public ActionResult Delete(int id)
-        {
-            return View();
+        {   
+            //does the id even exist?
+            if (!_repos.Exists(id))
+            {
+                //if not return 404 error
+                return NotFound();
+            }
+            //map the model by id with LeaveType
+            var modelMapping = _mappings.Map<LeaveTypeViewModel>(_repos.FindById(id));
+            return View(modelMapping);
         }
 
-        // POST: LeaveTypesController/Delete/5
+        // TODO:change [HttpDelete(..)]
+        // TODO: Implement soft Delete() 
+        // POST: LeaveTypesController/Delete/5 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteItem(int id, LeaveTypeViewModel model)
         {
             try
             {
