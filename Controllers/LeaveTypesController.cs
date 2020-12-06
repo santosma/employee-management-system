@@ -42,6 +42,11 @@ namespace employee_management_system.Controllers
             var modelMapping = _mappings.Map<LeaveTypeViewModel>(_repos.FindById(id));
             return View(modelMapping);
         }
+        
+        public ActionResult Create()
+        {
+            return View();
+        }
 
 
         // POST: LeaveTypesController/Create
@@ -133,10 +138,19 @@ namespace employee_management_system.Controllers
         // POST: LeaveTypesController/Delete/5 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteItem(int id, LeaveTypeViewModel model)
+        public ActionResult Delete(int id, LeaveTypeViewModel viewModel)
         {
             try
             {
+                var model = _repos.FindById(id);
+                if(model == null)
+                {
+                    return NotFound();
+                }
+                if(!_repos.Delete(model))
+                {
+                    return View(model);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
