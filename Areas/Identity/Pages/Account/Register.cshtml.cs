@@ -51,12 +51,12 @@ namespace employee_management_system.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [RegularExpression(@"^[a-zA-Z''-'\s]{1,50}$")]
+            [RegularExpression(@"^[a-zA-Z''-'\s]{1,50}$", ErrorMessage = "No numbers or special characters")]
             [Display(Name ="First Name")]
             public String FirstName { get; set; }
 
             [Required]
-            [RegularExpression(@"^[a-zA-Z''-'\s]{1,50}$")]
+            [RegularExpression(@"^[a-zA-Z''-'\s]{1,50}$", ErrorMessage="No numbers or special characters")]
             [Display(Name = "Last Name")]
             public String LastName { get; set; }
 
