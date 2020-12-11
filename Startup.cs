@@ -45,13 +45,20 @@ namespace employee_management_system
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            UserManager<Employee> userManager,
+            RoleManager<IdentityRole> roleManager
+            )
         {
             if (env.IsDevelopment())
             {
@@ -71,6 +78,9 @@ namespace employee_management_system
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //from /InitialPermissions.cs
+            InitialateRolesAndUsers.Seed(userManager, roleManager);
 
             app.UseEndpoints(endpoints =>
             {
