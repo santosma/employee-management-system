@@ -80,7 +80,7 @@ namespace employee_management_system
             app.UseAuthorization();
 
             //from /InitialPermissions.cs
-            InitialateRolesAndUsers.Seed(userManager, roleManager);
+            InitiateRolesAndUsers.Seed(userManager, roleManager);
 
             app.UseEndpoints(endpoints =>
             {

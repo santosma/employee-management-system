@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace employee_management_system
 {
     //Create a set of default roles and users upon startup
-    public static class InitialateRolesAndUsers
+    public static class InitiateRolesAndUsers
     {
         public static void Seed( UserManager<Employee> userManager, RoleManager<IdentityRole> roleManager) 
         {
@@ -25,7 +25,8 @@ namespace employee_management_system
             {
                 var user = new Employee
                 {
-                    UserName = "admin"
+                    UserName = "admin",
+                    Email = "admin@myemailaddress.com"   
                 };
 
                 // TODO: change admin default passowrd before launch or have admin change it
