@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using employee_management_system.Data
+@inject SignInManager<Employee> SignInManager
+@inject UserManager<Employee> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,17 +29,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Request leave</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Leaves
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" asp-controller="LeaveTypes" action="index">Types</a>
-                            <a class="dropdown-item" href="#">Requests</a>
-                            <a class="dropdown-item" href="#">Allocations</a>
-                        </div>
-                    </li>
-                </ul>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Leaves
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-controller="LeaveTypes" action="index">Types</a>
+                                    <a class="dropdown-item" href="#">Requests</a>
+                                    <a class="dropdown-item" href="#">Allocations</a>
+                                </div>
+                            </li>
+                        }
+                    }
+                        </ul>
                 <span class="navbar-text">
                     <partial name="_LoginPartial" />
                 </span>
