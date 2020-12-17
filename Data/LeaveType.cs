@@ -13,6 +13,8 @@ namespace employee_management_system.Data
 
         public String Name { get; set; }
 
+        public int DefaultDaysOff { get; set; }
+
         public DateTime DateCreated { get; set; }
     }
 }

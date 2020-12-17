@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace employee_management_system.Models
 {
-    public class LeaveAllocationCreateViewModel
+    public class LeaveAllocationViewModel
     {
         public int Id { get; set; }
-
-        [Required]
         public int NumOfDays { get; set; }
         public DateTime DateCreated { get; set; }
+        public int YearPeriod { get; set; }
 
         public EmployeeViewModel Employee { get; set; }
         public String EmployeeId { get; set; }

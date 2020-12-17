@@ -14,8 +14,7 @@ namespace employee_management_system.Mappings
         {
             CreateMap<LeaveType, LeaveTypeViewModel>().ReverseMap();
 
-            CreateMap<LeaveAllocation, LeaveAllocationCreateViewModel>().ReverseMap();
-            CreateMap<LeaveAllocation, LeaveAllocationDetailsViewModel>().ReverseMap();
+            CreateMap<LeaveAllocation, LeaveAllocationViewModel>().ReverseMap();
 
             CreateMap<LeaveRequest, LeaveRequestViewModel>().ReverseMap();
 

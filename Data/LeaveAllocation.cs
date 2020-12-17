@@ -15,14 +15,16 @@ namespace employee_management_system.Data
         public int NumOfDays { get; set; }
 
         //employees record
-        public Employee Employee { get; set; }
         [ForeignKey("EmployeeId")]
+        public Employee Employee { get; set; }
         public String EmployeeId { get; set; }
 
         //leavetype record
-        public LeaveType LeaveType { get; set; }
         [ForeignKey("LeaveTypeId")]
+        public LeaveType LeaveType { get; set; }
         public int LeaveTypeId { get; set; }
-        
+
+        public int YearPeriod { get; set; }
+
     }
 }
