@@ -8,5 +8,6 @@ namespace employee_management_system.Contracts
 {
     public interface ILeaveAllocationRepository : IRepositoryBase<LeaveAllocation>
     {
+       public  bool validate (string employeeId, int leaveTypeId);
     }
 }

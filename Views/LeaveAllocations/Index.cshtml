@@ -1,0 +1,42 @@
+﻿@model employee_management_system.Models.LeaveAllocationCreateViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Type
+            </th>
+            <th>
+                Default days
+            </th>
+            <th>
+                Set days
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LeaveTypeList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaultDaysOff)
+            </td>
+            <td>
+                @Html.ActionLink("Set day(s) requested", "SetLeave", new { id=item.Id}) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

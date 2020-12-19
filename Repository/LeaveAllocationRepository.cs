@@ -53,5 +53,12 @@ namespace employee_management_system.Repository
             _db.LeaveAllocations.Update(entity);
             return Save();
         }
+
+        public bool validate(string employeeId, int leaveTypeId)
+        {
+            var period = DateTime.Now.Year;
+            return FindAll().Where(
+                q => q.EmployeeId == employeeId && q.LeaveTypeId == leaveTypeId && q.YearPeriod == period).Any();
+        }
     }
 }
